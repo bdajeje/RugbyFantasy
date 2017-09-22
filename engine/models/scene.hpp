@@ -20,7 +20,7 @@ class Scene : public engine::Drawable
     void addDrawable(DrawableSP drawable);
     void addUpdatable(engine::UpdatableSP updatable);
 
-    virtual const sf::Vector2f& getSize() const noexcept override { return _size; }
+    virtual sf::Vector2f getSize() const noexcept override { return _size; }
     virtual void setPosition(sf::Vector2f pos) override;
     virtual void move(float x, float y) override;
     virtual void update(const sf::Time& time);

@@ -11,7 +11,7 @@ class MouseMoveEvent final : public Event
 {
   public:
 
-    MouseMoveEvent(sf::Event& event);
+    MouseMoveEvent(const sf::Event& event);
 
   public:
 

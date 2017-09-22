@@ -1,5 +1,7 @@
 #include "events.hpp"
 
+#include <engine/events/mouse_move_event.hpp>
+
 namespace engine {
 
 std::unique_ptr<Events> Events::_instance;
@@ -27,6 +29,15 @@ void Events::dispatch(const EventSP& event)
     // First encountered registration to return false, we stop propagating the event
     if(!registration.func(event))
       return;
+  }
+}
+
+EventSP Events::createEvent(const sf::Event& event)
+{
+  switch(event.type)
+  {
+    case sf::Event::MouseMoved: return std::make_shared<MouseMoveEvent>(event);
+    default:                    return nullptr;
   }
 }
 

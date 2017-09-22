@@ -6,6 +6,7 @@
 #include <engine/updatable.hpp>
 #include <engine/graphics/animation.hpp>
 #include <engine/graphics/sprite.hpp>
+#include <engine/graphics/animations/sprite_animation.hpp>
 
 #include <utils/json.hpp>
 
@@ -25,8 +26,8 @@ class AnimatedSprite : public Sprite
 
   protected:
 
-    AnimationSP _animation;
-    json _data;
+    AnimationUP _animation;
+    AnimatedSpriteDataSP _data;
 };
 
 using AnimatedSpriteSP = std::shared_ptr<AnimatedSprite>;

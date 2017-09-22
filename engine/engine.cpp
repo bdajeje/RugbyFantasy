@@ -4,7 +4,6 @@
 #include <engine/events.hpp>
 #include <engine/resources/textures_cache.hpp>
 #include <engine/graphics/mouse_scene.hpp>
-#include <engine/events/mouse_move_event.hpp>
 #include <game/graphics/scenes/map_scene.hpp>
 #include <utils/timer.hpp>
 #include <utils/key_limitor.hpp>
@@ -44,14 +43,16 @@ int Engine::start()
     const sf::Time elapsed_time {timer.restart()};
 
     // Handle SFML events
-    sf::Event event;
-    while(window->pollEvent(event))
+    sf::Event sf_event;
+    while(window->pollEvent(sf_event))
     {
       // Close program
-      if( event.type == sf::Event::Closed )
+      if( sf_event.type == sf::Event::Closed )
         return 0;
 
-      Events::dispatch(std::make_shared<MouseMoveEvent>(event));
+      EventSP event = Events::createEvent(sf_event);
+      if(event)
+        Events::dispatch(event);
     }
 
     // Update sceens

@@ -23,6 +23,7 @@ class Animation : public Updatable
 };
 
 using AnimationSP = std::shared_ptr<Animation>;
+using AnimationUP = std::unique_ptr<Animation>;
 
 }
 

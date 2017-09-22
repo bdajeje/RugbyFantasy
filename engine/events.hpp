@@ -31,6 +31,7 @@ class Events final
     static void subscribe(EventSubscriberSP subscriber, engine::EventType type, EventCallback func);
     static void unsubscribe(EventSubscriberSP subscriber);
     static void dispatch(const EventSP& event);
+    static EventSP createEvent(const sf::Event& event);
 
   private:
 

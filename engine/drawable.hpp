@@ -21,7 +21,7 @@ class Drawable : public sf::Drawable
 
     void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default) const noexcept;
 
-    virtual const sf::Vector2f& getSize() const noexcept = 0;    
+    virtual sf::Vector2f getSize() const noexcept = 0;
     virtual void setPosition(sf::Vector2f pos) = 0;
     virtual void move(float x, float y) = 0;
 

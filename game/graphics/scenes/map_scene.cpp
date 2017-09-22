@@ -17,7 +17,7 @@ void MapScene::createBackground()
   engine::AnimatedSpriteSP background = std::make_shared<engine::AnimatedSprite>(
     "map",
     engine::Window::width(),
-    engine::Window::height()
+    engine::Window::height() * 1.5
   );
 
   addUpdatable(background);

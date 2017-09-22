@@ -9,9 +9,7 @@ namespace engine {
 Sprite::Sprite(float width, float height)
   : _sprite {std::make_shared<sf::Sprite>()}
   , _size {width, height}
-{
-
-}
+{}
 
 void Sprite::internalDraw(sf::RenderTarget& target, sf::RenderStates states) const noexcept
 {
@@ -44,6 +42,16 @@ void Sprite::horizontalFlip()
 {
   const auto& bounds = _sprite->getLocalBounds();
   _sprite->setTextureRect(sf::IntRect(bounds.width, 0, -bounds.width, bounds.height));
+}
+
+sf::Vector2u Sprite::getTextureSize() const noexcept
+{
+  return _sprite->getTexture()->getSize();
+}
+
+sf::Vector2f Sprite::getSize() const noexcept
+{
+  return _size + _sprite->getScale();
 }
 
 SpriteSP getSprite(const std::string& texture_file_path, float width, float height)
