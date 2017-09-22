@@ -1,0 +1,8 @@
+{
+  "sprite": "player.png",
+  "animation": {
+    "steps": 6,
+    "refresh_rate": 1000,
+    "repeat": 1
+  }
+}
