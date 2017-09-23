@@ -4,7 +4,8 @@
 namespace engine {
 
   enum class EventType {
-    MouseMove, MouseClick
+    MouseMove, MouseClick,
+    KeyPress
   };
 
 }

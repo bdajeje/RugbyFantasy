@@ -11,7 +11,6 @@
 #include <game/models/players/human_player.hpp>
 #include <game/models/players/ai_player.hpp>
 #include <utils/timer.hpp>
-#include <utils/key_limitor.hpp>
 
 namespace engine {
 
@@ -25,8 +24,6 @@ Engine::Engine(int /*argc*/, char** /*argv*/)
 
 int Engine::start()
 {
-  utils::KeyLimitor::init(100);
-
   // \todo temporary tests, this MUST go outside of engine, this is related to the game not the engine.
   {
     game::Game::startNewGame(std::make_shared<game::HumanPlayer>("The Nani's"), std::make_shared<game::AIPlayer>("Berserkers"));

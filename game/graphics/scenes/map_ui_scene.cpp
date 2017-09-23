@@ -2,12 +2,13 @@
 
 #include <game/game.hpp>
 #include <engine/window.hpp>
+#include <engine/events/event_types.hpp>
 
 namespace game {
 
 namespace {
   constexpr float TEAM_UI_BLOCK_WIDTH   = 0.25;
-  constexpr float TEAM_UI_BLOCK_PADDING = 0.01;
+  constexpr float TEAM_UI_BLOCK_PADDING = 0.01;  
 }
 
 MapUIScene::MapUIScene()

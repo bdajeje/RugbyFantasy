@@ -10,6 +10,7 @@
 #include <engine/events/event_subscriber.hpp>
 #include <engine/events/event_types.hpp>
 #include <engine/events/event.hpp>
+#include <utils/key_limitor.hpp>
 
 namespace engine {
 
@@ -28,20 +29,21 @@ class Events final
   public:
 
     static void init();
-    static void subscribe(EventSubscriberSP subscriber, engine::EventType type, EventCallback func);
+    static void subscribe(EventSubscriberSP subscriber, EventType type, EventCallback func);
     static void unsubscribe(EventSubscriberSP subscriber);
     static void dispatch(const EventSP& event);
     static EventSP createEvent(const sf::Event& event);
 
   private:
 
-    Events() = default;
+    Events();
 
   private:
 
     static std::unique_ptr<Events> _instance;
 
-    std::map<engine::EventType, std::list<EventRegistration>> _registrations;
+    std::map<EventType, std::list<EventRegistration>> _registrations;
+    utils::KeyLimitor _key_limitor;
 };
 
 }

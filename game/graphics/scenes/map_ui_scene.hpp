@@ -2,12 +2,13 @@
 #define MAP_UI_SCENE_HPP
 
 #include <engine/models/scene.hpp>
+#include <engine/events/event.hpp>
 #include <game/models/players/player.hpp>
 #include <game/graphics/models/map_ui_team_block.hpp>
 
 namespace game {
 
-class MapUIScene final : public engine::model::Scene
+class MapUIScene final : public engine::model::Scene                       
 {
   public:
 
@@ -18,7 +19,7 @@ class MapUIScene final : public engine::model::Scene
     enum class UIBlockPosition {Left, Right};
 
     void createUI();
-    MapUITeamBlockSP createTeamUIBLock(PlayerSP player, UIBlockPosition position);
+    MapUITeamBlockSP createTeamUIBLock(PlayerSP player, UIBlockPosition position);    
 
   private:
 

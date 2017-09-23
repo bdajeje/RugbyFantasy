@@ -37,7 +37,8 @@ SOURCES += main.cpp \
     game/graphics/scenes/map_ui_scene.cpp \
     game/graphics/models/map_ui_team_block.cpp \
     engine/resources/font_cache.cpp \
-    engine/graphics/text.cpp
+    engine/graphics/text.cpp \
+    engine/events/key_press_event.cpp
 
 HEADERS += \
     engine/engine.hpp \
@@ -71,5 +72,6 @@ HEADERS += \
     utils/maths.hpp \
     game/graphics/models/map_ui_team_block.hpp \
     engine/resources/font_cache.hpp \
-    engine/graphics/text.hpp
+    engine/graphics/text.hpp \
+    engine/events/key_press_event.hpp
 

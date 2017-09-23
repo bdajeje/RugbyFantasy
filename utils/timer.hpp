@@ -1,5 +1,5 @@
-#ifndef TIMER_HPP
-#define TIMER_HPP
+#ifndef UTILS_TIME_TIMER_HPP
+#define UTILS_TIME_TIMER_HPP
 
 #include <SFML/System/Clock.hpp>
 
@@ -18,15 +18,15 @@ class Timer final
     /*! Restart the timer
      *  \returns time since started
      */
-    sf::Time restart();
+    ::sf::Time restart();
 
     /*! Pause the timer
      *  \returns current elapsed time
      */
-    sf::Time pause();
+    ::sf::Time pause();
 
     /*! Returns time since started */
-    sf::Time getElapsedTime() const;
+    ::sf::Time getElapsedTime() const;
 
     /*! Is the timer paused ? */
     bool isPaused() const { return _paused; }
@@ -34,7 +34,7 @@ class Timer final
   private:
 
     sf::Clock _clock;
-    sf::Time _elapsed_time {sf::Time::Zero};
+    ::sf::Time _elapsed_time {::sf::Time::Zero};
     bool _paused {true};
 };
 

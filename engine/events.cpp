@@ -1,6 +1,7 @@
 #include "events.hpp"
 
 #include <engine/events/mouse_move_event.hpp>
+#include <engine/events/key_press_event.hpp>
 
 namespace engine {
 
@@ -11,7 +12,11 @@ void Events::init()
   _instance.reset( new Events );
 }
 
-void Events::subscribe(EventSubscriberSP subscriber, engine::EventType type, EventCallback func)
+Events::Events()
+  : _key_limitor {5}
+{}
+
+void Events::subscribe(EventSubscriberSP subscriber, EventType type, EventCallback func)
 {
   _instance->_registrations[type].emplace_back(subscriber, func);
 }
@@ -34,11 +39,21 @@ void Events::dispatch(const EventSP& event)
 
 EventSP Events::createEvent(const sf::Event& event)
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wswitch"
   switch(event.type)
   {
-    case sf::Event::MouseMoved: return std::make_shared<MouseMoveEvent>(event);
-    default:                    return nullptr;
+    case sf::Event::MouseMoved:
+      return std::make_shared<MouseMoveEvent>(event);
+    case sf::Event::KeyPressed:
+    {
+      if(_instance->_key_limitor.isAllowed())
+        return std::make_shared<KeyPressEvent>();
+    }
   }
+#pragma GCC diagnostic pop
+
+  return nullptr;
 }
 
 void Events::unsubscribe(EventSubscriberSP subscriber)
