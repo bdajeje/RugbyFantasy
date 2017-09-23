@@ -29,7 +29,9 @@ class Sprite : public Drawable
     void horizontalFlip();
 
     virtual sf::Vector2f getSize() const noexcept override;
+    virtual const sf::Vector2f& getPosition() const noexcept override { return _sprite->getPosition(); }
     virtual sf::Vector2u getTextureSize() const noexcept;
+
     virtual void setPosition(sf::Vector2f pos) override { _sprite->setPosition(pos); }
     virtual void move(float x, float y) override { _sprite->move(x, y); }
 

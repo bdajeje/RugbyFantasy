@@ -28,7 +28,16 @@ SOURCES += main.cpp \
     engine/events.cpp \
     engine/events/event_subscriber.cpp \
     engine/events/event.cpp \
-    engine/events/mouse_move_event.cpp
+    engine/events/mouse_move_event.cpp \
+    game/game.cpp \
+    game/models/players/player.cpp \
+    game/models/players/human_player.cpp \
+    game/models/players/ai_player.cpp \
+    game/models/player_team.cpp \
+    game/graphics/scenes/map_ui_scene.cpp \
+    game/graphics/models/map_ui_team_block.cpp \
+    engine/resources/font_cache.cpp \
+    engine/graphics/text.cpp
 
 HEADERS += \
     engine/engine.hpp \
@@ -52,5 +61,15 @@ HEADERS += \
     engine/events/event_subscriber.hpp \
     engine/events/event_types.hpp \
     engine/events/event.hpp \
-    engine/events/mouse_move_event.hpp
+    engine/events/mouse_move_event.hpp \
+    game/game.hpp \
+    game/models/players/player.hpp \
+    game/models/players/human_player.hpp \
+    game/models/players/ai_player.hpp \
+    game/models/player_team.hpp \
+    game/graphics/scenes/map_ui_scene.hpp \
+    utils/maths.hpp \
+    game/graphics/models/map_ui_team_block.hpp \
+    engine/resources/font_cache.hpp \
+    engine/graphics/text.hpp
 

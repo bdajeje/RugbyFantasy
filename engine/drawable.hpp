@@ -22,12 +22,14 @@ class Drawable : public sf::Drawable
     void draw(sf::RenderTarget& target, sf::RenderStates states = sf::RenderStates::Default) const noexcept;
 
     virtual sf::Vector2f getSize() const noexcept = 0;
+    virtual const sf::Vector2f& getPosition() const noexcept = 0;
+
     virtual void setPosition(sf::Vector2f pos) = 0;
     virtual void move(float x, float y) = 0;
 
-  protected:
+    protected:
 
-    virtual void internalDraw(sf::RenderTarget& target, sf::RenderStates states) const noexcept = 0;
+      virtual void internalDraw(sf::RenderTarget& target, sf::RenderStates states) const noexcept = 0;
 
   private:
 

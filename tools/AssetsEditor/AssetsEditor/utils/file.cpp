@@ -1,13 +1,10 @@
 #include "file.hpp"
 
 #include <boost/regex.hpp>
-#include <boost/algorithm/string.hpp>
-
 #include <iostream>
 #include <fstream>
 #include <regex>
-
-#include "utils/exception.hpp"
+#include <boost/algorithm/string.hpp>
 
 namespace utils {
 namespace files {
@@ -16,7 +13,7 @@ std::string read( const std::string& filepath )
 {
   std::ifstream file(filepath.c_str());
   if( !file.is_open() )
-    throw utils::Exception("Cannot read file: " + filepath);
+    throw std::invalid_argument("Cannot read file: " + filepath);
 
   // Get length of file
   file.seekg(0, file.end);
@@ -59,8 +56,7 @@ bool create( const std::string& filepath, const std::string& content, bool overr
 
 std::string sanitize(const std::string& input)
 {
-  std::string lowered_input = boost::algorithm::to_lower_copy(input);
-  return std::regex_replace(lowered_input, std::regex{"[^a-z^A-Z^0-9]"}, "_");
+  return std::regex_replace(input, std::regex{"[^a-z^A-Z^0-9]"}, "_");
 }
 
 std::vector<std::string> lines(const std::string& filepath, size_t nbr_lines)

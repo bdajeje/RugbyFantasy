@@ -5,12 +5,14 @@
 namespace engine {
 namespace model {
 
-Scene::Scene(std::string name)
+Scene::Scene(std::string name, float width, float height)
   : _name {name}
-  , _size {static_cast<float>(Window::width()), static_cast<float>(Window::height())}
   , _base_pos {0, 0}
 {
-
+  if(width == 0 && height == 0)
+    _size = sf::Vector2f{static_cast<float>(Window::width()), static_cast<float>(Window::height())};
+  else
+    _size = sf::Vector2f{width, height};
 }
 
 void Scene::internalDraw(sf::RenderTarget& target, sf::RenderStates states) const noexcept

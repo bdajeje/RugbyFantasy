@@ -1,0 +1,13 @@
+{
+  "strength": 45,
+  "agility": 40,
+  "speed": 30,
+  "armor": 55,
+  "skills": [],
+  "equipment": {
+    "helmet": "",
+    "chest": "",
+    "shoes": "",
+    "gloves": ""
+  }
+}
