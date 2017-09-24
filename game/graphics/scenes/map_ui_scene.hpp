@@ -3,6 +3,7 @@
 
 #include <engine/models/scene.hpp>
 #include <engine/events/event.hpp>
+#include <engine/graphics/text.hpp>
 #include <game/models/players/player.hpp>
 #include <game/graphics/models/map_ui_team_block.hpp>
 
@@ -20,11 +21,15 @@ class MapUIScene final : public engine::model::Scene
 
     void createUI();
     MapUITeamBlockSP createTeamUIBLock(PlayerSP player, UIBlockPosition position);    
+    void eventsRegistration();
+    void gamePhaseChanged(const json& data);
+    void updateStateText(const std::string& new_text);
 
   private:
 
     MapUITeamBlockSP _team_1_ui_block;
     MapUITeamBlockSP _team_2_ui_block;
+    engine::TextSP _state_text;
 };
 
 }

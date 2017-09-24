@@ -18,6 +18,10 @@ class MapScene final : public engine::model::Scene
 
   private:
 
+    enum class CurrentState {
+      PlayersPlacement, Game
+    };
+
     void createBackground();
     bool keyPressed(const engine::EventSP& /*event*/);
     void scrollUp();
@@ -26,6 +30,7 @@ class MapScene final : public engine::model::Scene
   private:
 
     float _background_height {0};
+    CurrentState _current_state {CurrentState::PlayersPlacement};
 };
 
 }

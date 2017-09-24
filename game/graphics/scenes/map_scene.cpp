@@ -51,6 +51,13 @@ bool MapScene::keyPressed(const engine::EventSP& /*event*/)
     scrollDown();
     return false;
   }
+  else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+  {
+    json data;
+    data["phase"] = "NANI?!";
+    emitSceneEvent("NextPhase", data);
+    return false;
+  }
 
   return true;
 }

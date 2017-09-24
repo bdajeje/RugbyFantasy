@@ -2,20 +2,47 @@
 #define SCENE_HPP
 
 #include <list>
+#include <map>
 #include <string>
+#include <functional>
+#include <set>
 
 #include <engine/drawable.hpp>
 #include <engine/updatable.hpp>
+#include <utils/json.hpp>
 
 namespace engine {
 namespace model {
+
+using SceneEventCallback = std::function<void(const json& data)>;
+
+namespace {
+
+  // Some aliases to better understand following code
+  using EmittingScene       = std::string;
+  using EmittingSceneAction = std::string;
+  using SceneAction         = std::string;
+  using ReceivingScene      = std::string;
+
+  struct SceneEventRegistration
+  {
+    SceneEventRegistration(EmittingScene emitter, SceneAction action)
+      : emitter {emitter}
+      , action {action}
+    {}
+
+    EmittingScene emitter;
+    SceneAction action;
+  };
+
+}
 
 class Scene : public engine::Drawable
 {
   public:
 
     Scene(std::string name, float width = 0.f, float height = 0.f);
-    virtual ~Scene() = default;
+    virtual ~Scene();
 
     void addDrawable(DrawableSP drawable);
     void addUpdatable(engine::UpdatableSP updatable);
@@ -28,9 +55,15 @@ class Scene : public engine::Drawable
     virtual void update(const sf::Time& time);
     virtual void start() {}
 
+  private:
+
+    void unregisterSceneEvents();
+
   protected:
 
-    virtual void internalDraw(sf::RenderTarget& target, sf::RenderStates states) const noexcept;
+    virtual void internalDraw(sf::RenderTarget& target, sf::RenderStates states) const noexcept;        
+    void registerSceneEvent(EmittingScene from, SceneAction action, SceneEventCallback func);
+    void emitSceneEvent(SceneAction action, const json& data);
 
   private:
 
@@ -39,6 +72,13 @@ class Scene : public engine::Drawable
     std::list<engine::UpdatableSP> _updatables;
     sf::Vector2f _size;
     sf::Vector2f _base_pos;
+
+    /*!
+     * First map of scene name to map of scene action to triggers callbacks
+     */
+    static std::map<EmittingSceneAction, std::map<ReceivingScene, SceneEventCallback>> s_scene_events;
+
+    static std::map<ReceivingScene, std::set<EmittingSceneAction>> s_registered_scenes;
 };
 
 using SceneSP = std::shared_ptr<Scene>;
